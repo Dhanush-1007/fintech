@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS users (
+  did TEXT PRIMARY KEY,
+  kyc_status TEXT NOT NULL DEFAULT 'pending',
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS kyc_sessions (
+  id TEXT PRIMARY KEY,
+  did TEXT,
+  challenge JSONB NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS vcs (
+  id TEXT PRIMARY KEY,
+  did TEXT NOT NULL,
+  payload JSONB NOT NULL,
+  signature TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS proofs (
+  id TEXT PRIMARY KEY,
+  did TEXT NOT NULL,
+  public_signals JSONB NOT NULL,
+  proof JSONB NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);

@@ -1,0 +1,133 @@
+:root {
+  color-scheme: light;
+  --ink: #1b1d1f;
+  --muted: #5a5f63;
+  --accent: #ff6b4a;
+  --accent-2: #f2c94c;
+  --surface: rgba(255, 255, 255, 0.78);
+  --border: rgba(27, 29, 31, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top, #ffe6d5, #f7f3ee 40%, #edf1f7 100%);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.85), rgba(255, 236, 214, 0.9));
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px rgba(27, 29, 31, 0.08);
+  animation: rise 0.8s ease-out;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.7s ease-out;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.button {
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button.secondary {
+  background: #1b1d1f;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.kpi {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kpi span {
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 110px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 10px;
+  font-family: "Courier New", monospace;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero h1 {
+    font-size: 26px;
+  }
+}

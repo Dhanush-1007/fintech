@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: fintech_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: fintech
+      POSTGRES_PASSWORD: fintech
+      POSTGRES_DB: fintech_identity
+    volumes:
+      - fintech_pgdata:/var/lib/postgresql/data
+
+volumes:
+  fintech_pgdata:

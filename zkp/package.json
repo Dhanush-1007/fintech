@@ -1,0 +1,19 @@
+{
+  "name": "fintech-zkp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "compile": "circom circuits/age_check.circom --r1cs --wasm --sym -o build",
+    "setup": "snarkjs groth16 setup build/age_check.r1cs ptau/powersOfTau28_hez_final_10.ptau build/age_check_0000.zkey",
+    "contribute": "snarkjs zkey contribute build/age_check_0000.zkey build/age_check_final.zkey --name=demo",
+    "vkey": "snarkjs zkey export verificationkey build/age_check_final.zkey build/verification_key.json",
+    "witness": "node build/age_check_js/generate_witness.js build/age_check_js/age_check.wasm input.json build/witness.wtns",
+    "prove": "snarkjs groth16 prove build/age_check_final.zkey build/witness.wtns build/proof.json build/public.json",
+    "verify": "snarkjs groth16 verify build/verification_key.json build/public.json build/proof.json"
+  },
+  "devDependencies": {
+    "circom": "^2.1.6",
+    "circomlib": "^2.0.5",
+    "snarkjs": "^0.7.3"
+  }
+}

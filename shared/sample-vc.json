@@ -1,0 +1,13 @@
+{
+  "@context": ["https://www.w3.org/2018/credentials/v1"],
+  "type": ["VerifiableCredential", "KYCVerification"],
+  "issuer": "did:example:issuer",
+  "issuanceDate": "2026-04-29T00:00:00Z",
+  "credentialSubject": {
+    "id": "did:example:user",
+    "name": "Verified User",
+    "dob": "2002-01-01",
+    "kycStatus": "verified",
+    "incomeBand": ">10L"
+  }
+}

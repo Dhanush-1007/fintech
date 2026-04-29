@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+.DS_Store
+backend/.env
+frontend/dist/
+zkp/node_modules/
+zkp/build/
+zkp/ptau/
