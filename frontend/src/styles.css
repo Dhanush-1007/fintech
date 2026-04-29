@@ -1,133 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
 :root {
-  color-scheme: light;
-  --ink: #1b1d1f;
-  --muted: #5a5f63;
-  --accent: #ff6b4a;
-  --accent-2: #f2c94c;
-  --surface: rgba(255, 255, 255, 0.78);
-  --border: rgba(27, 29, 31, 0.12);
+  --ink: #0f1117;
+  --muted: #5a5f6e;
+  --accent: #6c63ff;
+  --accent-glow: rgba(108, 99, 255, 0.25);
+  --accent-2: #ff6b4a;
+  --ok: #00c48c;
+  --ok-bg: rgba(0, 196, 140, 0.12);
+  --fail: #ff4d4f;
+  --fail-bg: rgba(255, 77, 79, 0.12);
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-solid: #1a1b2e;
+  --surface-card: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: "Georgia", "Times New Roman", serif;
-  color: var(--ink);
-  background: radial-gradient(circle at top, #ffe6d5, #f7f3ee 40%, #edf1f7 100%);
+  font-family: "Inter", system-ui, sans-serif;
+  color: #e8eaf6;
+  background: #0b0c1e;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(108, 99, 255, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(255, 107, 74, 0.12) 0%, transparent 55%);
   min-height: 100vh;
 }
 
 .app {
-  max-width: 1100px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 32px 20px 64px;
+  padding: 36px 20px 80px;
   display: grid;
-  gap: 24px;
+  gap: 28px;
 }
 
+/* ── Hero ────────────────────────────────────── */
 .hero {
-  display: grid;
-  gap: 12px;
-  padding: 24px;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.85), rgba(255, 236, 214, 0.9));
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  box-shadow: 0 18px 40px rgba(27, 29, 31, 0.08);
-  animation: rise 0.8s ease-out;
+  padding: 36px 32px;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.15), rgba(255, 107, 74, 0.08));
+  border-radius: 24px;
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 60px rgba(108, 99, 255, 0.12);
+  animation: rise 0.7s ease-out;
 }
 
 .hero h1 {
-  margin: 0;
-  font-size: 34px;
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #a78bfa, #ff6b4a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
 }
 
+.hero .muted {
+  font-size: 15px;
+}
+
+/* ── Error Banner ────────────────────────────── */
+.error-banner {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: var(--fail-bg);
+  border: 1px solid rgba(255, 77, 79, 0.35);
+  border-radius: 10px;
+  color: #ff8080;
+  font-size: 14px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ── Grid ────────────────────────────────────── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
 }
 
+/* ── Card ────────────────────────────────────── */
 .card {
-  background: var(--surface);
-  border-radius: 18px;
-  padding: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  padding: 22px;
   border: 1px solid var(--border);
-  backdrop-filter: blur(8px);
-  animation: fadeIn 0.7s ease-out;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeIn 0.6s ease-out;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
 }
 
 .card h3 {
-  margin-top: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #a78bfa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* ── Button ──────────────────────────────────── */
 .button {
   border: none;
-  background: var(--accent);
+  background: linear-gradient(135deg, #6c63ff, #8b5cf6);
   color: #fff;
-  padding: 10px 14px;
+  padding: 10px 18px;
   border-radius: 12px;
   font-weight: 600;
+  font-size: 14px;
+  font-family: inherit;
   cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s, box-shadow 0.15s;
+  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.35);
+  width: fit-content;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.5);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .button.secondary {
-  background: #1b1d1f;
+  background: linear-gradient(135deg, #374151, #1f2937);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
+.button.secondary:hover:not(:disabled) {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.button.small {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+/* ── Muted / Small ───────────────────────────── */
 .muted {
   color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
-.kpi {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+.small {
+  font-size: 12px;
 }
 
-.kpi span {
-  padding: 8px 12px;
-  background: #fff;
+/* ── Mono ────────────────────────────────────── */
+.mono {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: #94a3b8;
+  word-break: break-all;
+}
+
+/* ── Badge ───────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.ok {
+  background: var(--ok-bg);
+  color: var(--ok);
+  border: 1px solid rgba(0, 196, 140, 0.25);
+}
+
+.badge.fail {
+  background: var(--fail-bg);
+  color: var(--fail);
+  border: 1px solid rgba(255, 77, 79, 0.25);
+}
+
+.badge.large {
+  padding: 6px 16px;
   font-size: 14px;
 }
 
-textarea {
-  width: 100%;
-  min-height: 110px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  padding: 10px;
-  font-family: "Courier New", monospace;
+.badge.small {
+  padding: 3px 8px;
+  font-size: 11px;
 }
 
+/* ── Score row ───────────────────────────────── */
+.score-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── KPI row ─────────────────────────────────── */
+.kpi {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Verify results ──────────────────────────── */
+.verify-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.result-row > span:first-child {
+  min-width: 110px;
+  font-weight: 500;
+  color: #c4c9d4;
+}
+
+/* ── Textarea ────────────────────────────────── */
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.25);
+  color: #94a3b8;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* ── DID label ───────────────────────────────── */
+.did-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ── QR ──────────────────────────────────────── */
+canvas {
+  border-radius: 12px;
+  padding: 8px;
+  background: #fff;
+}
+
+/* ── Animations ──────────────────────────────── */
 @keyframes rise {
-  from {
-    transform: translateY(12px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(14px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Responsive ──────────────────────────────── */
 @media (max-width: 720px) {
-  .hero h1 {
-    font-size: 26px;
-  }
+  .hero h1 { font-size: 26px; }
+  .app { padding: 20px 14px 60px; }
+  .card { padding: 16px; }
 }
